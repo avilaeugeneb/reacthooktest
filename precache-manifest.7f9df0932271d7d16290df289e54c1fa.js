@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/reacthooktest/static/media/41.d7aa1ef5.png"
   },
   {
-    "revision": "fca4b471b8506ab747b5",
+    "revision": "aadfed2f4940dbc79d8c",
     "url": "/reacthooktest/static/css/main.8f015bff.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/reacthooktest/static/js/runtime~main.daeb2260.js"
   },
   {
-    "revision": "a140795e45eae8a831a3",
-    "url": "/reacthooktest/static/js/2.a3ec0e8a.chunk.js"
+    "revision": "6c08a60137e50bbcf692",
+    "url": "/reacthooktest/static/js/2.754a0844.chunk.js"
   },
   {
     "revision": "f666f0a1a46f0c7c6ce43c1f823e9c52",
@@ -200,8 +200,8 @@ self.__precacheManifest = [
     "url": "/reacthooktest/static/media/40.fc7e7fc9.png"
   },
   {
-    "revision": "fca4b471b8506ab747b5",
-    "url": "/reacthooktest/static/js/main.e05efbfd.chunk.js"
+    "revision": "aadfed2f4940dbc79d8c",
+    "url": "/reacthooktest/static/js/main.c5f9bac3.chunk.js"
   },
   {
     "revision": "d7aa1ef5de37019ef0565084ac6b721f",
@@ -396,7 +396,7 @@ self.__precacheManifest = [
     "url": "/reacthooktest/static/media/89.c7d80b24.png"
   },
   {
-    "revision": "59cd0d4b5b37acdc31b7866624eec542",
+    "revision": "2b292e9cc3106fb2385b3f7a963f0716",
     "url": "/reacthooktest/index.html"
   }
 ];
