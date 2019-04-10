@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { JOKE_API } from './constants/APIs'
-import { useGet } from './hooks/axios'
+import { JOKE_API } from '../constants/APIs'
+import { useGet } from '../hooks/axios'
+
 const Joke = () => {
   const { setup, punchline } = useGet(JOKE_API, {})
   return (

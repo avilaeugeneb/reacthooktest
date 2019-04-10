@@ -6,7 +6,7 @@ const Story = ({ story }) => {
   const dateTime = time * 1000
   return (
     <div>
-      <a href={url}>{title}</a>
+      <a href={url} target='_blank' rel='noopener noreferrer'>{title}</a>
       <div>{by} - {moment(dateTime).format('LLL')}</div>
     </div>
   )

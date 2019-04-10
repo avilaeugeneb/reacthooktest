@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Story from './Story'
-import { STORIES_API } from './constants/APIs'
-import { useGet } from './hooks/axios'
+import { STORIES_API } from '../constants/APIs'
+import { useGet } from '../hooks/axios'
 
 const Stories = () => {
   const stories = useGet(STORIES_API, [])
