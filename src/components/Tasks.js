@@ -1,31 +1,69 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useReducer } from 'react'
 import uuid from 'uuid/v4'
 
 import { readStoreTasks, storeTasks } from '../helpers/localStore'
 
+const TYPES = {
+  ADD_TASK: 'ADD_TASK',
+  COMPLETE_TASK: 'COMPLETE_TASK',
+  DELETE_TASK: 'DELETE_TASK'
+}
+const initialTasksState = readStoreTasks()
+const taskReducer = (state = initialTasksState, action) => {
+  let newState
+  switch (action.type) {
+    case TYPES.ADD_TASK:
+      newState = {
+        ...state,
+        tasks: [...state.tasks, action.task]
+      }
+      break
+    case TYPES.COMPLETE_TASK:
+      const { completedTask } = action
+      newState = {
+        ...state,
+        completedTasks: [...state.completedTasks, completedTask],
+        tasks: state.tasks.filter(task => task.id !== completedTask.id)
+      }
+      break
+    case TYPES.DELETE_TASK:
+      const { taskToDelete } = action
+      newState = {
+        ...state,
+        completedTasks: state.completedTasks.filter(task => task.id !== taskToDelete.id)
+      }
+      break
+    default:
+      newState = state
+  }
+
+  storeTasks(newState)
+  return newState
+}
+
 const Tasks = () => {
-  const storedTasks = readStoreTasks()
   const [taskText, setTaskText] = useState('')
-  const [tasks, setTasks] = useState(storedTasks.tasks)
-  const [completedTasks, setCompletedTasks] = useState(storedTasks.completedTasks)
+
+  const [state, dispatch] = useReducer(taskReducer, initialTasksState)
+  const { tasks, completedTasks } = state
 
   const updateTaskText = (e) => {
     setTaskText(e.target.value)
   }
 
   const addTask = () => {
-    if (taskText) {
-      setTasks([...tasks, { taskText, id: uuid() }])
+    if (taskText.trim()) {
+      const newId = uuid()
+      dispatch({ type: TYPES.ADD_TASK, task: { taskText, id: newId } })
     }
   }
 
   const completeTask = completedTask => {
-    setCompletedTasks([...completedTasks, completedTask])
-    setTasks(tasks.filter(task => task.id !== completedTask.id))
+    dispatch({ type: TYPES.COMPLETE_TASK, completedTask })
   }
 
   const deleteTask = taskToDelete => {
-    setCompletedTasks(completedTasks.filter(task => task.id !== taskToDelete.id))
+    dispatch({ type: TYPES.DELETE_TASK, taskToDelete })
   }
 
   const handleKeyPress = e => {
@@ -33,11 +71,6 @@ const Tasks = () => {
       addTask(taskText)
     }
   }
-
-  useEffect(() => {
-    storeTasks({ tasks, completedTasks })
-    setTaskText(' ')
-  }, [tasks, completedTasks])
 
   return (
     <div>

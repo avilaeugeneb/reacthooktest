@@ -2,6 +2,7 @@
 import { TASKS_STORAGE_KEY } from '../constants/keys'
 
 export const storeTasks = (tasksObj) => {
+  console.log('storeTasks', tasksObj)
   localStorage.setItem(
     TASKS_STORAGE_KEY,
     JSON.stringify(tasksObj)
